@@ -43,10 +43,11 @@ EOF
 
 export PATH=$PATH:/usr/pgsql-9.4/bin
 pip install paver packaging appdirs
-sed -i 's/^six*/six>=1.6.0/g' /usr/local/src/geoq/geoq/geoq/requirements.txt
-# BEFORE YOU DO THE NEXT STEP, MODIFY geoq/requirements.txt so that the line 'six==1.4.1' reads 'six>=1.6.0'
+sed -ie 's/six==1.4.1/six>=1.6.0/g' /usr/local/src/geoq/geoq/geoq/requirements.txt
 paver install_dependencies
-sudo su # or su -, have to work that out
+
+su $username -c > /dev/null 2>&1
+
 vi /var/lib/pgsql/9.4/data/pg_hba.conf # modify /var/lib/pgsql/9.4/data/pg_hba.conf, BOTH 'ident' for IPv4 and IPV6 become 'md5'
 service postgresql-9.4 restart
 exit
