@@ -1,3 +1,5 @@
+Works on CentOS 6.8. Other versions of Linux may come in the future.
+
 To run:
 
 First clone the repository:
