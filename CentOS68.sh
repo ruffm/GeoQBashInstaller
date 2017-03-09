@@ -46,11 +46,17 @@ pip install paver packaging appdirs
 sed -ie 's/six==1.4.1/six>=1.6.0/g' /usr/local/src/geoq/geoq/geoq/requirements.txt
 paver install_dependencies
 
-su $username -c > /dev/null 2>&1
+echo -e "Becoming root user again...\n"
+su -c > /dev/null 2>&1
 
-vi /var/lib/pgsql/9.4/data/pg_hba.conf # modify /var/lib/pgsql/9.4/data/pg_hba.conf, BOTH 'ident' for IPv4 and IPV6 become 'md5'
+sed -ie '#/!s/ident/md5/g' /var/lib/pgsql/9.4/data/pg_hba.conf
+# vi /var/lib/pgsql/9.4/data/pg_hba.conf # modify /var/lib/pgsql/9.4/data/pg_hba.conf, BOTH 'ident' for IPv4 and IPV6 become 'md5'
+
+echo -e "Restarting PostgreSQL...\n"
 service postgresql-9.4 restart
-exit
+
+echo -e "Becoming user again...\n"
+su $username -c > /dev/null 2>&1 
 paver sync
 paver install_dev_fixtures
 sudo npm install -g less
