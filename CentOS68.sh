@@ -24,6 +24,7 @@ chown $username  /usr/local/src
 
 echo -e "Changing to $username...\n"
 su $username -c > /dev/null 2>&1
+
 cd /usr/local/src
 mkdir geoq
 virtualenv ./geoq
@@ -31,6 +32,7 @@ cd geoq
 source bin/activate
 git clone https://github.com/ngageoint/geoq.git
 cd geoq
+
 sudo -u postgres psql << EOF # password might be needed here
 create role geoq login password 'geoq';
 create database geoq with owner geoq;
@@ -38,11 +40,13 @@ create database geoq with owner geoq;
 create extension postgis;
 create extension postgis_topology;
 EOF
+
 export PATH=$PATH:/usr/pgsql-9.4/bin
 pip install paver packaging appdirs
+sed -i 's/^six*/six>=1.6.0/g' /usr/local/src/geoq/geoq/geoq/requirements.txt
 # BEFORE YOU DO THE NEXT STEP, MODIFY geoq/requirements.txt so that the line 'six==1.4.1' reads 'six>=1.6.0'
 paver install_dependencies
-sudo su # or su -, have to work on that
+sudo su # or su -, have to work that out
 vi /var/lib/pgsql/9.4/data/pg_hba.conf # modify /var/lib/pgsql/9.4/data/pg_hba.conf, BOTH 'ident' for IPv4 and IPV6 become 'md5'
 service postgresql-9.4 restart
 exit
