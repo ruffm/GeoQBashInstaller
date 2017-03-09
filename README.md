@@ -1,6 +1,6 @@
 Works on CentOS 6.8. Other versions of Linux may come in the future.
 
-To run:
+To run (as root):
 
 First clone the repository:
 
