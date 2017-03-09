@@ -1,21 +1,29 @@
 #!/bin/sh
 # run as root
-echo -e "$Blue \n Updating system... $Color_Off\n"
+
+read -p "Enter your username: " username
+
+echo -e "Updating system...\n"
 yum update -y
 
-echo -e "$Blue \n Downloading and installing PostgreSQL RPM... $Color_Off\n"
+echo -e "Downloading and installing PostgreSQL RPM...\n"
 yum localinstall https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-3.noarch.rpm -y
 
-echo -e "$Blue \n Installing Epel-Release RPM... $Color_Off\n"
+echo -e "Installing Epel-Release RPM...\n"
 rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-echo -e "$Blue \n Installing software... $Color_Off\n"
+echo -e "Installing software...\n"
 yum install postgresql94-server postgresql94-plpython postgresql94-devel postgis2_94 postgis2_94-devel python-virtualenv python-pip nodejs nodejs-devel npm git mod_wsgi tmux gcc -y
 
-echo -e "$Blue \n Initialize database and starting postgres... $Color_Off\n"
-service postgresql-9.4 initdb && service postgresql-9.4 start
-chown centos /usr/local/src
-exit
+echo -e "Initialize database and starting postgres...\n"
+service postgresql-9.4 initdb 
+service postgresql-9.4 start
+
+echo -e "Taking ownership of /usr/local/src with non-root account...\n"
+chown $username  /usr/local/src
+
+echo -e "Changing to $username...\n"
+su $username -c > /dev/null 2>&1
 cd /usr/local/src
 mkdir geoq
 virtualenv ./geoq
@@ -23,7 +31,7 @@ cd geoq
 source bin/activate
 git clone https://github.com/ngageoint/geoq.git
 cd geoq
-sudo -u postgres psql << EOF
+sudo -u postgres psql << EOF # password might be needed here
 create role geoq login password 'geoq';
 create database geoq with owner geoq;
 \c geoq
@@ -34,7 +42,7 @@ export PATH=$PATH:/usr/pgsql-9.4/bin
 pip install paver packaging appdirs
 # BEFORE YOU DO THE NEXT STEP, MODIFY geoq/requirements.txt so that the line 'six==1.4.1' reads 'six>=1.6.0'
 paver install_dependencies
-sudo su
+sudo su # or su -, have to work on that
 vi /var/lib/pgsql/9.4/data/pg_hba.conf # modify /var/lib/pgsql/9.4/data/pg_hba.conf, BOTH 'ident' for IPv4 and IPV6 become 'md5'
 service postgresql-9.4 restart
 exit
