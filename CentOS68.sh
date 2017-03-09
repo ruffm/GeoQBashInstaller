@@ -49,8 +49,7 @@ paver install_dependencies
 echo -e "Becoming root user again...\n"
 su -c > /dev/null 2>&1
 
-sed -ie '#/!s/ident/md5/g' /var/lib/pgsql/9.4/data/pg_hba.conf
-# vi /var/lib/pgsql/9.4/data/pg_hba.conf # modify /var/lib/pgsql/9.4/data/pg_hba.conf, BOTH 'ident' for IPv4 and IPV6 become 'md5'
+sed -ie '/#/!s/ident/md5/g' /var/lib/pgsql/9.4/data/pg_hba.conf
 
 echo -e "Restarting PostgreSQL...\n"
 service postgresql-9.4 restart
