@@ -1,9 +1,18 @@
 #!/bin/sh
 # run as root
+echo -e "$Blue \n Updating system... $Color_Off\n"
 yum update -y
+
+echo -e "$Blue \n Downloading and installing PostgreSQL RPM... $Color_Off\n"
 yum localinstall https://download.postgresql.org/pub/repos/yum/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-3.noarch.rpm -y
+
+echo -e "$Blue \n Installing Epel-Release RPM... $Color_Off\n"
 rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+echo -e "$Blue \n Installing software... $Color_Off\n"
 yum install postgresql94-server postgresql94-plpython postgresql94-devel postgis2_94 postgis2_94-devel python-virtualenv python-pip nodejs nodejs-devel npm git mod_wsgi tmux gcc -y
+
+echo -e "$Blue \n Initialize database and starting postgres... $Color_Off\n"
 service postgresql-9.4 initdb && service postgresql-9.4 start
 chown centos /usr/local/src
 exit
