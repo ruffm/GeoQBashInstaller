@@ -1,5 +1,14 @@
 GeoQ Project
 
+
+   _____             ____  
+  / ____|           / __ \ 
+ | |  __  ___  ___ | |  | |
+ | | |_ |/ _ \/ _ \| |  | |
+ | |__| |  __/ (_) | |__| |
+  \_____|\___|\___/ \___\_\
+                                    
+
 The two folders are set up in such a way that is fairly self-explanatory. These are to be utilized with the NGA's GeoQ software and its suite of tools. You can find [GeoQ here](https://github.com/ngageoint/geoq), and other software to use with GeoQ [here -- an RFI generator](https://github.com/ngageoint/rfi-generator) and [here -- a geographic event tracker](https://github.com/ngageoint/geoevents).
 
 My fork of GeoQ, found [here](https://github.com/ruffm/geoq) may include this repository in the future.
@@ -39,13 +48,4 @@ Commands:
 
 	* Flickrscrape.py pulls from Flickr and writes the user ID, photo ID, and title/text of the photo to a file.
 
-	* Twitterscrape.py pulls from Twitter and writes a lot of data to a file. This data will be manipulated to clean up the file later on.
-
-
-   _____             ____  
-  / ____|           / __ \ 
- | |  __  ___  ___ | |  | |
- | | |_ |/ _ \/ _ \| |  | |
- | |__| |  __/ (_) | |__| |
-  \_____|\___|\___/ \___\_\
-                                            
+	* Twitterscrape.py pulls from Twitter and writes a lot of data to a file. This data will be manipulated to clean up the file later on.        
