@@ -6,31 +6,31 @@ My fork of GeoQ, found [here](https://github.com/ruffm/geoq) may include this re
 
 **Installer:**
 
-	* Includes the Bash script to automate an install of GeoQ. This works for server-based deployments as well as locally. 
+* Includes the Bash script to automate an install of GeoQ. This works for server-based deployments as well as locally. 
 
-	* If a manual install is preferred, the commands are in the .mdown file, and it should be fairly easy to follow.
+* If a manual install is preferred, the commands are in the .mdown file, and it should be fairly easy to follow.
 
-	* Both of these are set up for CentOS 6.8. Other Linux distributions (Ubuntu, CentOS 7+, RHEL, etc.) may come in the future.
+* Both of these are set up for CentOS 6.8. Other Linux distributions (Ubuntu, CentOS 7+, RHEL, etc.) may come in the future.
 
-	Commands:
+Commands:
 
-		To run (as root):
+	To run (as root):
 
-		First clone the repository:
+	First clone the repository:
 
-		    git clone https://github.com/ruffm/GeoQTools.git
+		git clone https://github.com/ruffm/GeoQTools.git
 
-		Then change into the folder:
+	Then change into the folder:
 
-		    cd /path/to/GeoQBashTools/Installer
+		cd /path/to/GeoQBashTools/Installer
 
-		Next, make the script executable:
+	Next, make the script executable:
 
-		    chmod +x CentOS68.sh
+		chmod +x CentOS68.sh
 
-		Finally, run the script:
+	Finally, run the script:
 
-		    ./CentOS68.sh
+		./CentOS68.sh
 
 
 **Tools:**
@@ -48,5 +48,4 @@ My fork of GeoQ, found [here](https://github.com/ruffm/geoq) may include this re
  | | |_ |/ _ \/ _ \| |  | |
  | |__| |  __/ (_) | |__| |
   \_____|\___|\___/ \___\_\
-                           
-                           
+                                            
