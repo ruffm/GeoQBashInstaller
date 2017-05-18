@@ -21,10 +21,13 @@ echo "Finished, if you saw output, please troubleshoot."
 sleep 3
 
 echo "Please make sure these servers are correct:"
+
 git checkout develop
+
 git remote -v
 
 echo "Pulling in 5 seconds..."
+
 sleep 5
 
 git pull
