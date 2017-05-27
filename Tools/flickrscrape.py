@@ -3,13 +3,13 @@ import flickr_api
 import json
 import os
 
-api_key = u'd391941c0e04c8364c436e7a78e431a4'
-api_secret = u'e9ce6c0073370b8c'
+api_key = u' '
+api_secret = u' '
 
 f = flickrapi.FlickrAPI(api_key, api_secret, format='etree')
 # flickr.authenticate_via_browser(perms='read')
 
-for photo in f.walk(tags='sra111'):
+for photo in f.walk(tags=' '): # put tag to search for in ' '
     info=[photo.get('id'), photo.get('owner'), photo.get('title')]
 
     photo_id=str(info[0])
