@@ -1,7 +1,7 @@
 #import os
 
-#api_key = u'd391941c0e04c8364c436e7a78e431a4'
-#api_secret = u'e9ce6c0073370b8c'
+#api_key = u' '
+#api_secret = u' '
 
 #f = flickrapi.FlickrAPI(api_key, api_secret, format='etree')
 #flickr.authenticate_via_browser(perms='read')
@@ -26,8 +26,8 @@
 
 
 
-api_key = u'd391941c0e04c8364c436e7a78e431a4'
-api_secret = u'e9ce6c0073370b8c'
+api_key = u' '
+api_secret = u' '
 
 def get_photo_info(api_key, photo_id): f = flickrapi.FlickrAPI(api_key)
 
@@ -69,9 +69,9 @@ for size in sizes:
             photo_width  = size['width']
             photo_source = size['source']
 		#return dict(title=title, desc=desc, tags = tags, exif=exif_details, thumb=thumb_details, photo=photo_details)
-	
-	
+
+
 thumb_details = dict(url=thumb_url, height=thumb_height, width = thumb_width, source=thumb_source)
-photo_details = dict(url=photo_url, height = photo_height, width = photo_width, source=photo_source)	
+photo_details = dict(url=photo_url, height = photo_height, width = photo_width, source=photo_source)
 
 return dict(title=title, desc=desc, tags = tags, exif=exif_details, thumb=thumb_details, photo=photo_details)
